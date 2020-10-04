@@ -5,7 +5,6 @@ class TicTacToeGame {
         this.board = new Board();
         this.humanPlayer = new HumanPlayer();
         this.computerPlayer = new ComputerPlayer();
-        this.winningCombinations = WINNING_COMBINATIONS
 
         this.boardHandler = this.boardHandler.bind(this)
         this.start = this.start.bind(this)
@@ -13,9 +12,7 @@ class TicTacToeGame {
 
     boardHandler(event){
         const { target: { innerText} } = event
-        const hasWinner = this.checkForWinner()
-        console.log('hasWinner1 === ', hasWinner)
-        if(!innerText && !hasWinner){
+        if(!innerText){
             this.humanPlayer.play(event.target);
             this.turns++;
             this.boardWrapper.removeEventListener('click', this.boardHandler)
@@ -24,8 +21,13 @@ class TicTacToeGame {
 
     start(){
         const intervalId = setInterval(() => {
-            const hasWinner = this.checkForWinner()
+            const hasWinner = this.board.checkForWinner()
+            const availablePositions = this.board.getAvailablePositions();
             if(hasWinner){
+                clearInterval(intervalId)
+                return
+            }
+            if(availablePositions.length === 0){
                 clearInterval(intervalId)
                 return
             }
@@ -37,23 +39,6 @@ class TicTacToeGame {
                 this.boardWrapper.addEventListener('click', this.boardHandler)
             }
         })
-    }
-
-    checkForWinner(){
-        let hasWinner = false
-
-        this.winningCombinations.forEach((combo) => {
-            const [ firstPos, secondPos, thirdPos ] = combo
-            if(
-                this.board.positions[firstPos].innerText !== "" &&
-                this.board.positions[firstPos].innerText === this.board.positions[secondPos].innerText &&
-                this.board.positions[firstPos].innerText === this.board.positions[thirdPos].innerText
-                ){
-                 hasWinner = true;
-             }
-        })
-
-        return hasWinner;
     }
 }
 
