@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#wrapper {
+    width: 30%;
+}
+
+.row {
+    display: flex;
+}
+
+.col {
+    flex: 1;
+    height: 100px;
+    border: medium solid black;
+}
+
+.col:first-child{
+    border-left: none;
+}
+
+.col:last-child{
+    border-right: none;
+}
+
+.row:first-child .col{
+    border-top: none;
+}
+
+.row:last-child .col{
+    border-bottom: none;
+}
