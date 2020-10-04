@@ -1,5 +1,7 @@
 class ComputerPlayer {
-    play(){
-        
+    play(board){
+        const availablePositions = board.getFreePositions();
+        const position = Math.floor(Math.random() * availablePositions.length)
+        availablePositions[position].innerText = "0"
     }
 }

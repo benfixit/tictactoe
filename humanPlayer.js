@@ -1,5 +1,5 @@
 class HumanPlayer {
-    play(){
-        
+    play(position){
+        position.innerText = "X"
     }
 }

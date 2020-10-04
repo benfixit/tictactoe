@@ -1,6 +1,10 @@
 class Board {
     constructor(){
-        this.positions = document.querySelectorAll('.col')
-        console.log('Positions === ', this.positions)
+        this.positions = Array.from(document.querySelectorAll('.col'))
+        this.getFreePositions()
+    }
+
+    getFreePositions(){
+        return this.positions.filter(position => position.innerText === "")
     }
 }
