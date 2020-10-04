@@ -1,10 +1,13 @@
 class Board {
     constructor(){
         this.positions = Array.from(document.querySelectorAll('.col'))
-        this.getFreePositions()
     }
 
-    getFreePositions(){
+    getAvailablePositions(){
         return this.positions.filter(position => position.innerText === "")
+    }
+
+    getFilledPositions(){
+        return this.positions.filter(position => position.innerText !== "")
     }
 }
